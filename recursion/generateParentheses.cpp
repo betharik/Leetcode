@@ -27,7 +27,7 @@ class Solution {
         }
         if (close < open) {
             curr.append(")");
-            backtrack(vec, curr, open, close + 1);
+            backtrack(vec, curr, open, close + 1, n);
             curr.pop_back();
         }
     }
