@@ -1,0 +1,117 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+<title>Google Oauth 2.0 Login for web apps</title>
+<style>
+@import url(https:://fonts.googleapis.com/css?family=Roboto:1000);
+body {
+    font-family:"Geneva,Tahoma,Verdana,sans-serif; ";
+    background-color: #00274C
+}
+.detail {
+    margin: 0;
+    padding-left: 5px;
+    border: solid gold 3px;
+    background-color: beige;
+}
+.main {
+        background-color: #FFFFFF;
+        width: 400px;
+        height: 400px;
+        margin: 7em auto;
+        border-radius: 1.5em;
+        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    }
+.google-btn {
+    width: 235px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #4285f4;
+    border-radius: 5px;
+    box-shadow: 0 6px 7px 0 rgba(0,0,0,0.25);
+    display: block;
+}
+.google-btn .google-icon-wrapper {
+    position: absolute;
+    margin-top: 1px;
+    margin-left: 1px;
+    width: 49px;
+    height: 49px;
+    border-radius: 2px;
+    background-color: #fff;
+}
+.google-btn .google.icon {
+    position: absolute;
+    margin-top: 11px;
+    margin-left: 11px;
+    width: 18px;
+    height: 18px;
+}
+.google-btn .btn-text {
+    float: right;
+    margin-top: 12px;
+    margin-right: 9px;
+    color: #fff;
+    font-size: 19px;
+    letter-spacing: 0.2px;
+    font-family: "Roboto";
+}
+.google-btn:hover {
+    box-shadow: 0 0 6px #4285f4;
+}
+.google-btn:active {
+    background: #16692f;
+}
+</style>
+</head>
+
+<body>
+<p style="color:#fff; font-size:50px; font-family:Geneva" align="center"> Welcome to QuizGen </p>
+{% if not google_data %}
+    <p style="color:#fff; font-family:Geneva;" align="center"> Log in to create Quizzes <br> Click on the below link to sign in with google</p>
+    <a href="/login" class="google-btn">
+        <div class="google-icon-wrapper">
+        <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/48px-Google_%22G%22_Logo.svg.png"/>
+        </div>
+    <p class="btn-text"><b>Sign in with Google</b></p>
+{% else %}
+    <p>Hi {{google_data.name}}, [<strong>{{google_data.email}}</strong>]. You have successfully logged in. Check your details below.</p>
+{% if google_data is not none %}
+    <div class="detail">
+        <p style="font-size: 15px; padding-bottom: 10px;"> User info fetched from <strong>{{fetch_url}}</strong></p>
+        {% for key, value in google_data.items() %}
+        <p><strong>{{ key }}</strong>:{{ value }}</p
+        {% endfor %}
+    </div>
+{% endif %}
+{% endif %}
+
+</html>
+
+import React, {useState, useEffect} from 'react';
+import Nav from '../components/nav';
+
+function HomePage() {
+
+    const [object, setObject] = useState([])
+
+
+    useEffect(() => {
+        
+    }, []);
+
+    return(
+        <div>
+            <Nav/>
+            <h2>Welcome to Next.js</h2>
+            
+            <p><a href="./home">List Quizzes</a></p>
+            <p><a href="./quiz/1">Edit Example Quiz</a></p>
+            <p><a href="./quiz/1/question/2">Add Question To Quiz</a></p>
+        </div>
+    );
+ }
+ 
+ export default HomePage
